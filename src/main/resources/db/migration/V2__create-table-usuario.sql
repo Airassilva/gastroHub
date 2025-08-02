@@ -7,6 +7,7 @@ create table usuario(
     cnpj VARCHAR(18),
     login VARCHAR(50) NOT NULL,
     senha VARCHAR(100) NOT NULL,
+    tipo_usuario VARCHAR(100) NOT NULL,
     data_cadastro DATE NOT NULL,
     data_ultima_alteracao DATE NOT NULL,
     ativo BOOLEAN DEFAULT TRUE,

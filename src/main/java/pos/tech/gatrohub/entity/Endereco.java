@@ -1,17 +1,16 @@
 package pos.tech.gatrohub.entity;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import pos.tech.gatrohub.dto.EnderecoDTO;
-
 import java.util.Date;
 
 @Table(name = "endereco")
 @Entity(name = "endereco")
-@Embeddable
+@Setter
+@Getter
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Endereco {
@@ -20,6 +19,7 @@ public class Endereco {
 
     private String logradouro;
     private String bairro;
+    private String rua;
     private String cep;
     private String numero;
     private String complemento;
@@ -35,7 +35,7 @@ public class Endereco {
         this.complemento = endereco.complemento();
         this.cidade = endereco.cidade();
         this.uf = endereco.uf();
+        this.rua = endereco.rua();
         this.dataUltimaALteracao = new Date();
     }
-
 }

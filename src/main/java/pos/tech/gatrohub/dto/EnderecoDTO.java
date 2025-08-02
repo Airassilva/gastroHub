@@ -22,6 +22,9 @@ public record EnderecoDTO(
         @NotBlank
         String uf,
 
+        @NotBlank
+        String rua,
+
         String complemento,
 
         String numero,
