@@ -4,9 +4,7 @@ package pos.tech.gatrohub.infrastructure.persistence;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.*;
-import pos.tech.gatrohub.domain.entity.UserPasswordChangeDTO;
 import pos.tech.gatrohub.domain.entity.UserRequestDTO;
-import pos.tech.gatrohub.domain.entity.UserUpdateRequestDTO;
 
 import java.util.Date;
 

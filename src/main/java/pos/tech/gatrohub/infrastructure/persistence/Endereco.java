@@ -9,9 +9,9 @@ import java.util.Date;
 
 @Table(name = "endereco")
 @Entity(name = "endereco")
-@Setter
-@Getter
 @NoArgsConstructor
+@Getter
+@Setter
 @EqualsAndHashCode(of = "id")
 public class Endereco {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

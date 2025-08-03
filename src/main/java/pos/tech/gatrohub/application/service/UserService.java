@@ -61,7 +61,7 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado no sistema"));
 
         user.setEmail(dto.email());
-        user.setEndereco(dto.endereco()); // Se precisar, use mapper aqui
+        user.setEndereco(dto.endereco());
         userGateway.salvar(user);
     }
 
