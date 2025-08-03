@@ -1,4 +1,4 @@
-package pos.tech.gatrohub.entity;
+package pos.tech.gatrohub.infrastructure.persistence;
 
 public enum TipoUsuario {
     RESTAURANTE,

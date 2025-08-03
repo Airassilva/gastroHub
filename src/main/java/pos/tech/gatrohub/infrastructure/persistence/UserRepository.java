@@ -1,8 +1,7 @@
-package pos.tech.gatrohub.repository;
+package pos.tech.gatrohub.infrastructure.persistence;
 
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
-import pos.tech.gatrohub.entity.User;
 
 import java.util.Optional;
 

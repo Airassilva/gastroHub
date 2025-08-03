@@ -1,10 +1,10 @@
-package pos.tech.gatrohub.entity;
+package pos.tech.gatrohub.infrastructure.persistence;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
-import pos.tech.gatrohub.dto.EnderecoDTO;
+import pos.tech.gatrohub.domain.entity.EnderecoDTO;
 import java.util.Date;
 
 @Table(name = "endereco")

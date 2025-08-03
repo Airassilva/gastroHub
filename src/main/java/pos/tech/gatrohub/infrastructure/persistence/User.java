@@ -1,12 +1,12 @@
-package pos.tech.gatrohub.entity;
+package pos.tech.gatrohub.infrastructure.persistence;
 
 
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.*;
-import pos.tech.gatrohub.dto.UserPasswordChangeDTO;
-import pos.tech.gatrohub.dto.UserRequestDTO;
-import pos.tech.gatrohub.dto.UserUpdateRequestDTO;
+import pos.tech.gatrohub.domain.entity.UserPasswordChangeDTO;
+import pos.tech.gatrohub.domain.entity.UserRequestDTO;
+import pos.tech.gatrohub.domain.entity.UserUpdateRequestDTO;
 
 import java.util.Date;
 
@@ -38,10 +38,6 @@ public class User {
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
     public User(@Valid UserRequestDTO request) {
         this.nome = request.nome();
         this.email = request.email();
@@ -55,14 +51,4 @@ public class User {
         this.ativo = true;
         this.endereco = new Endereco(request.endereco());
     }
-
-    public User(@Valid UserPasswordChangeDTO loginRequest) {
-        this.senha = loginRequest.senha();
-    }
-
-    public User (UserUpdateRequestDTO updateRequest) {
-        this.email = updateRequest.email();
-        this.endereco = new Endereco (updateRequest.endereco());
-    }
-
 }
