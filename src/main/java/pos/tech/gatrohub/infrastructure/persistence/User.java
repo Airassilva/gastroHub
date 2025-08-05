@@ -108,4 +108,7 @@ public class User {
         this.endereco = endereco;
     }
 
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
 }
