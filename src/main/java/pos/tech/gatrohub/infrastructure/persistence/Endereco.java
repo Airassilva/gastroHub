@@ -10,8 +10,6 @@ import java.util.Date;
 @Table(name = "endereco")
 @Entity(name = "endereco")
 @NoArgsConstructor
-@Getter
-@Setter
 @EqualsAndHashCode(of = "id")
 public class Endereco {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,5 +35,41 @@ public class Endereco {
         this.uf = endereco.uf();
         this.rua = endereco.rua();
         this.dataUltimaALteracao = new Date();
+    }
+
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public Date getDataUltimaALteracao() {
+        return dataUltimaALteracao;
     }
 }
