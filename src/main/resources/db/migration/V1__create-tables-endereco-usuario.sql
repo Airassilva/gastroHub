@@ -1,6 +1,5 @@
 create table usuario (
-    id bigint primary key,
-    endereco_id bigint not null,
+    id bigint primary key auto_increment,
     nome varchar(100) not null,
     email varchar(100) not null,
     cpf varchar(14),
@@ -14,7 +13,7 @@ create table usuario (
 );
 
 create table endereco(
-    id bigint primary key,
+    id bigint primary key auto_increment,
     rua varchar(100) not null,
     logradouro varchar(100) not null,
     numero varchar(20),

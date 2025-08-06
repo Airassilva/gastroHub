@@ -1,7 +1,12 @@
 package pos.tech.gatrohub.infrastructure.gateways;
 
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import pos.tech.gatrohub.application.gateways.UserGateway;
+import pos.tech.gatrohub.domain.entity.ParametrosPaginacao;
+import pos.tech.gatrohub.domain.entity.ResultadoPaginado;
 import pos.tech.gatrohub.infrastructure.persistence.User;
 import pos.tech.gatrohub.infrastructure.persistence.UserRepository;
 
@@ -20,17 +25,25 @@ public class UserRepositoryGateway implements UserGateway {
     }
 
     @Override
-    public Optional<User> buscarPorLogin(String login) {
-        return userRepository.findByLogin(login);
-    }
-
-    @Override
     public Optional<User> buscarPorId(Long id) {
-        return userRepository.findById(id);
+        return userRepository.getReferenceById(id);
     }
 
     @Override
     public void salvar(User user) {
         userRepository.save(user);
+    }
+
+    @Override
+    public ResultadoPaginado<User> buscarUsuariosAtivos(ParametrosPaginacao parametros) {
+        Pageable pageable = PageRequest.of(parametros.getPagina(), parametros.getTamanho());
+        Page<User> paginaSpring = userRepository.findAllByAtivoTrue(pageable);
+
+        return new ResultadoPaginado<>(
+                paginaSpring.getContent(),
+                paginaSpring.getNumber(),
+                paginaSpring.getTotalPages(),
+                paginaSpring.getTotalElements()
+        );
     }
 }

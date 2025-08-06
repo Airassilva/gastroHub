@@ -3,10 +3,16 @@ package pos.tech.gatrohub.infrastructure.persistence;
 
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.hibernate.validator.constraints.br.CPF;
 import pos.tech.gatrohub.domain.entity.UserRequestDTO;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "usuario")
 @Entity(name = "Usuario")
@@ -17,22 +23,41 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String nome;
+
+    @NotBlank @Email
     private String email;
+
+    @CPF
     private String cpf;
+
+    @CNPJ
     private String cnpj;
+
+    @NotBlank
     private String login;
+
+    @NotBlank
     private String senha;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataCadastro;
     private Date dataUltimaAlteracao;
+
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
     private Boolean ativo;
 
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
 
-    @ManyToOne
-    @JoinColumn(name = "endereco_id")
-    private Endereco endereco;
+    @ManyToMany
+    @JoinTable(
+            name = "usuario_enderecos",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "endereco_id")
+    )
+    private List<Endereco> endereco = new ArrayList<>();
 
     public User(@Valid UserRequestDTO request) {
         this.nome = request.nome();
@@ -45,15 +70,11 @@ public class User {
         this.dataCadastro = new Date();
         this.dataUltimaAlteracao = new Date();
         this.ativo = true;
-        this.endereco = new Endereco(request.endereco());
+        this.endereco = List.of(new Endereco(request.endereco()));
     }
 
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getEmail() {
@@ -64,26 +85,6 @@ public class User {
         this.email = email;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public String getSenha() {
         return senha;
     }
@@ -92,23 +93,23 @@ public class User {
         this.senha = senha;
     }
 
-    public TipoUsuario getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(TipoUsuario tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
-
-    public Endereco getEndereco() {
+    public List<Endereco>  getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(Endereco endereco) {
+    public void setEndereco(List<Endereco>  endereco) {
         this.endereco = endereco;
     }
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setDataUltimaAlteracao(Date dataUltimaAlteracao) {
+        this.dataUltimaAlteracao = dataUltimaAlteracao;
     }
 }

@@ -1,7 +1,6 @@
 package pos.tech.gatrohub.domain.entity;
 
 import pos.tech.gatrohub.infrastructure.persistence.TipoUsuario;
-import pos.tech.gatrohub.infrastructure.persistence.User;
 
 public record UserRequestDTO(
         String nome,
@@ -20,16 +19,4 @@ public record UserRequestDTO(
 
         EnderecoDTO endereco) {
 
-    public UserRequestDTO( User user) {
-        this(
-                user.getNome(),
-                user.getEmail(),
-                user.getCpf(),
-                user.getCnpj(),
-                user.getLogin(),
-                user.getSenha(),
-                user.getTipoUsuario(),
-                new EnderecoDTO(user.getEndereco())
-        );
-    }
 }

@@ -1,6 +1,7 @@
 package pos.tech.gatrohub.infrastructure.gateways;
 
 import pos.tech.gatrohub.domain.entity.UserRequestDTO;
+import pos.tech.gatrohub.domain.entity.UserResponseDTO;
 import pos.tech.gatrohub.infrastructure.persistence.User;
 
 public class UserMapper {
@@ -8,7 +9,7 @@ public class UserMapper {
         return new User(requestDTO);
     }
 
-    UserRequestDTO toDTO(User user) {
-        return new UserRequestDTO(user);
+    public UserResponseDTO toDTO(User user) {
+        return new UserResponseDTO(user);
     }
 }
