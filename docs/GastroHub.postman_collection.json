@@ -1,0 +1,578 @@
+{
+	"info": {
+		"_postman_id": "87220843-e708-4184-9693-0e33d7f1caf6",
+		"name": "GastroHub",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47331437",
+		"_collection_link": "https://airassilva-02673a54-1209831.postman.co/workspace/Aira-Soares's-Workspace~99e162d7-0acb-4391-85fa-2816592cb207/collection/47331437-87220843-e708-4184-9693-0e33d7f1caf6?action=share&source=collection_link&creator=47331437"
+	},
+	"item": [
+		{
+			"name": "Caminho feliz",
+			"item": [
+				{
+					"name": "Cadastro usuário",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.2.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Marina Alvez\",\n  \"email\": \"maria.alves@email.com\",\n  \"cpf\": \"111.444.777-35\",\n  \"cnpj\": null,\n  \"login\": \"marinaalves\",\n  \"senha\": \"senhaSegura123\",\n  \"tipoUsuario\": \"CLIENTE\",\n  \"endereco\": {\n    \"logradouro\": \"Rua das Flores\",\n    \"bairro\": \"Centro\",\n\t\t\"rua\": \"Pernambuco\",\n    \"cep\": \"12345678\",\n    \"numero\": \"100\",\n    \"complemento\": \"Apto 202\",\n    \"cidade\": \"São Paulo\",\n    \"uf\": \"SP\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar usuários ativos",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar endereço",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id_usuario\": 1,\n  \"endereco\": {\n    \"rua\": \"Rua Nova\",\n    \"logradouro\": \"Jardim\",\n    \"numero\": \"200\",\n    \"complemento\": \"Casa\",\n    \"cidade\": \"Rio de Janeiro\",\n    \"uf\": \"RJ\",\n    \"cep\": \"20000-000\",\n    \"bairro\": \"Botafogo\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"login\": \"marinaalves\",\n  \"senha\": \"senhaSegura123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "trocar senha",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"senhaAntiga\": \"senhaSegura123\",\n\t\"senhaNova\":\"senhaSegura1234\",\n\t\"senhaConfirmacao\":\"senhaSegura1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario/senha",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"senha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar email e endereço",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"email\": \"joao.novoemail@example.com\",\n  \"endereco\": {\n    \"rua\": \"Rua Atualizada\",\n    \"logradouro\": \"Bairro Atualizado\",\n    \"numero\": \"300\",\n    \"complemento\": \"Apartamento 101\",\n    \"cidade\": \"Belo Horizonte\",\n    \"uf\": \"MG\",\n    \"cep\": \"30000-000\",\n    \"bairro\": \"Savassi\",\n    \"dataUltimaAlteracao\": \"2025-08-06\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario/atualizar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"atualizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "desativar usuário",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/usuario/deletar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"deletar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Caminho triste ",
+			"item": [
+				{
+					"name": "Cadastro usuário bad request",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.2.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Marina Alvez\",\n  \"email\": \"maria.alves@email.com\",\n  \"cpf\": null,\n  \"cnpj\": null,\n  \"login\": \"marinaalves\",\n  \"senha\": \"senhaSegura123\",\n  \"tipoUsuario\": \"CLIENTE\",\n  \"endereco\": {\n    \"logradouro\": \"Rua das Flores\",\n    \"bairro\": \"Centro\",\n\t\t\"rua\": \"Pernambuco\",\n    \"cep\": \"12345678\",\n    \"numero\": \"100\",\n    \"complemento\": \"Apto 202\",\n    \"cidade\": \"São Paulo\",\n    \"uf\": \"SP\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar usuários ativos bad request",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/usuarios/ativos?page=abc&size=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"ativos"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "abc"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar endereço bad request",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id_usuario\": 1,\n  \"endereco\": {\n    \"rua\": \"Rua Nova\",\n    \"logradouro\": \"Jardim\",\n    \"numero\": \"200\",\n    \"complemento\": \"Casa\",\n    \"cidade\": null,\n    \"uf\": \"RJ\",\n    \"cep\": \"20000-000\",\n    \"bairro\": \"Botafogo\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login bad request",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"login\": \"marinaalves\",\n  \"senha\": \"senhaSegura1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "trocar senha bad request",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"senhaAntiga\": \"senhaSegura1234\",\n\t\"senhaNova\":\"senhaSegura1234\",\n\t\"senhaConfirmacao\":\"senhaSegura1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario/senha",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"senha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar email e endereço bad request",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"email\": \"joao.novoemail@example.com\",\n  \"endereco\": {\n    \"rua\": \"Rua Atualizada\",\n    \"logradouro\": \"Bairro Atualizado\",\n    \"numero\": \"300\",\n    \"complemento\": \"Apartamento 101\",\n    \"cidade\": \"Belo Horizonte\",\n    \"uf\": \"MG\",\n    \"cep\": null,\n    \"bairro\": \"Savassi\",\n    \"dataUltimaAlteracao\": \"2025-08-06\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario/atualizar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"atualizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "desativar usuário bad request",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/usuario/deletar/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"deletar",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
