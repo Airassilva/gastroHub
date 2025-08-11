@@ -3,18 +3,17 @@ package pos.tech.gatrohub.application.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import pos.tech.gatrohub.application.dto.*;
 import pos.tech.gatrohub.application.gateways.EnderecoGateway;
 import pos.tech.gatrohub.application.gateways.UserGateway;
-import pos.tech.gatrohub.domain.entity.*;
+import pos.tech.gatrohub.domain.entity.ParametrosPaginacao;
+import pos.tech.gatrohub.domain.entity.ResultadoPaginado;
 import pos.tech.gatrohub.infrastructure.gateways.EnderecoMapper;
 import pos.tech.gatrohub.infrastructure.gateways.UserMapper;
 import pos.tech.gatrohub.infrastructure.persistence.Endereco;
 import pos.tech.gatrohub.infrastructure.persistence.User;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class UserService {
@@ -67,6 +66,10 @@ public class UserService {
             throw new RuntimeException("A senha antiga está incorreta.");
         }
 
+        if(!dto.senhaNova().equals(dto.senhaConfirmacao())){
+            throw new RuntimeException("A senha atualizada e a confirmação devem ser iguais.");
+        }
+
         if (dto.senhaNova().equals(user.getSenha())) {
             throw new RuntimeException("A nova senha não pode ser igual à senha atual.");
         }
@@ -80,7 +83,8 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado no sistema"));
 
         user.setEmail(dto.email());
-        user.setEndereco(Collections.singletonList(dto.endereco()));
+        user.getEndereco().clear();
+        user.getEndereco().add(dto.endereco());
         user.setDataUltimaAlteracao(new Date());
         userGateway.salvar(user);
     }
@@ -88,9 +92,11 @@ public class UserService {
     public void atualizarEnderecoUsuario(UserUpdateEndereco dto) {
        User user = userGateway.buscarPorId(dto.id_usuario())
                .orElseThrow(() -> new RuntimeException("Usuario não encontrado no sistema"));
-       user.setEndereco(Collections.singletonList(dto.endereco()));
-       user.setDataUltimaAlteracao(new Date());
-       userGateway.salvar(user);
+
+        user.getEndereco().clear();
+        user.getEndereco().add(dto.endereco());
+        user.setDataUltimaAlteracao(new Date());
+        userGateway.salvar(user);
     }
 
     public void deletarUsuario(Long id) {

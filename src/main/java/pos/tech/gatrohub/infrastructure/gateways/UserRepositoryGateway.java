@@ -26,7 +26,7 @@ public class UserRepositoryGateway implements UserGateway {
 
     @Override
     public Optional<User> buscarPorId(Long id) {
-        return userRepository.getReferenceById(id);
+        return userRepository.findById(id);
     }
 
     @Override

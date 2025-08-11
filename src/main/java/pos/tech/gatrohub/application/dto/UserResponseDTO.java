@@ -1,4 +1,4 @@
-package pos.tech.gatrohub.domain.entity;
+package pos.tech.gatrohub.application.dto;
 
 import pos.tech.gatrohub.infrastructure.persistence.User;
 
@@ -11,5 +11,17 @@ public class UserResponseDTO {
         this.id = user.getId();
         this.nome = user.getNome();
         this.email = user.getEmail();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

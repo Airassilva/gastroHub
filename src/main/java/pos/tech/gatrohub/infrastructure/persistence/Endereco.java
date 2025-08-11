@@ -1,10 +1,11 @@
 package pos.tech.gatrohub.infrastructure.persistence;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
-import pos.tech.gatrohub.domain.entity.EnderecoDTO;
+import pos.tech.gatrohub.application.dto.EnderecoDTO;
 import java.util.Date;
 
 @Table(name = "endereco")
@@ -15,15 +16,27 @@ public class Endereco {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "O campo logradouro é obrigatório.")
     private String logradouro;
+
+    @NotBlank(message = "O campo bairro é obrigatório.")
     private String bairro;
+
+    @NotBlank(message = "O campo rua é obrigatório.")
     private String rua;
+
+    @NotBlank(message = "O campo cep é obrigatório.")
     private String cep;
+
+    @NotBlank(message = "O campo cidade é obrigatório.")
+    private String cidade;
+
+    @NotBlank(message = "O campo uf é obrigatório.")
+    private String uf;
+
+    private Date dataUltimaALteracao;
     private String numero;
     private String complemento;
-    private String cidade;
-    private String uf;
-    private Date dataUltimaALteracao;
 
     public Endereco(@NotNull @Valid EnderecoDTO endereco) {
         this.logradouro = endereco.logradouro();

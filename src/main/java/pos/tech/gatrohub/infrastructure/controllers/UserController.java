@@ -1,12 +1,11 @@
 package pos.tech.gatrohub.infrastructure.controllers;
 
-import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pos.tech.gatrohub.domain.entity.*;
+import pos.tech.gatrohub.application.dto.*;
 import pos.tech.gatrohub.application.service.UserService;
 
 

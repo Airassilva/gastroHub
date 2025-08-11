@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
-import pos.tech.gatrohub.domain.entity.UserRequestDTO;
+import pos.tech.gatrohub.application.dto.UserRequestDTO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,10 +23,11 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "O campo nome é obrigatório.")
     private String nome;
 
-    @NotBlank @Email
+    @NotBlank(message = "O campo email é obrigatório.")
+    @Email
     private String email;
 
     @CPF
@@ -35,10 +36,10 @@ public class User {
     @CNPJ
     private String cnpj;
 
-    @NotBlank
+    @NotBlank(message = "O campo login é obrigatório.")
     private String login;
 
-    @NotBlank
+    @NotBlank(message = "O campo senha é obrigatório.")
     private String senha;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -51,7 +52,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
 
-    @ManyToMany
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(
             name = "usuario_enderecos",
             joinColumns = @JoinColumn(name = "usuario_id"),

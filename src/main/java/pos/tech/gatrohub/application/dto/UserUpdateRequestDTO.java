@@ -1,4 +1,4 @@
-package pos.tech.gatrohub.domain.entity;
+package pos.tech.gatrohub.application.dto;
 
 import pos.tech.gatrohub.infrastructure.persistence.Endereco;
 

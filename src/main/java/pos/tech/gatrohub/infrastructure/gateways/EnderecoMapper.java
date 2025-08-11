@@ -1,6 +1,6 @@
 package pos.tech.gatrohub.infrastructure.gateways;
 
-import pos.tech.gatrohub.domain.entity.EnderecoDTO;
+import pos.tech.gatrohub.application.dto.EnderecoDTO;
 import pos.tech.gatrohub.infrastructure.persistence.Endereco;
 
 public class EnderecoMapper {
