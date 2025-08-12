@@ -8,6 +8,7 @@ import pos.tech.gatrohub.application.gateways.EnderecoGateway;
 import pos.tech.gatrohub.application.gateways.UserGateway;
 import pos.tech.gatrohub.domain.entity.ParametrosPaginacao;
 import pos.tech.gatrohub.domain.entity.ResultadoPaginado;
+import pos.tech.gatrohub.exceptions.BadRequestException;
 import pos.tech.gatrohub.infrastructure.gateways.EnderecoMapper;
 import pos.tech.gatrohub.infrastructure.gateways.UserMapper;
 import pos.tech.gatrohub.infrastructure.persistence.Endereco;
@@ -36,7 +37,7 @@ public class UserService {
     public void cadastrarUsuario(UserRequestDTO requestDTO) {
         if ((requestDTO.cpf() == null || requestDTO.cpf().isBlank()) &&
                 (requestDTO.cnpj() == null || requestDTO.cnpj().isBlank())) {
-            throw new RuntimeException("Precisa ser informado um CPF ou CNPJ.");
+            throw new BadRequestException("Precisa ser informado um CPF ou CNPJ.");
         }
 
         Endereco endereco = EnderecoMapper.toEntity(requestDTO.endereco());
@@ -52,7 +53,7 @@ public class UserService {
         Optional<User> optionalUser =
                 userGateway.buscarPorLoginESenha(loginDTO.login(), loginDTO.senha());
         if (optionalUser.isEmpty()) {
-            throw new RuntimeException("Login ou senha inválidos.");
+            throw new BadRequestException("Login ou senha inválidos.");
         }
         User user = optionalUser.get();
         return userMapper.toDTO(user);
@@ -60,18 +61,18 @@ public class UserService {
 
     public void trocarSenha(UserPasswordChangeDTO dto) {
         User user = userGateway.buscarPorId(dto.id())
-                .orElseThrow(() -> new RuntimeException("Login não encontrado."));
+                .orElseThrow(() -> new BadRequestException("Login não encontrado."));
 
         if (!dto.senhaAntiga().equals(user.getSenha())) {
-            throw new RuntimeException("A senha antiga está incorreta.");
+            throw new BadRequestException("A senha antiga não confere.");
         }
 
         if(!dto.senhaNova().equals(dto.senhaConfirmacao())){
-            throw new RuntimeException("A senha atualizada e a confirmação devem ser iguais.");
+            throw new BadRequestException("A senha atualizada e a confirmação devem ser iguais.");
         }
 
         if (dto.senhaNova().equals(user.getSenha())) {
-            throw new RuntimeException("A nova senha não pode ser igual à senha atual.");
+            throw new BadRequestException("A nova senha não pode ser igual à senha atual.");
         }
         user.setSenha(dto.senhaNova());
         user.setDataUltimaAlteracao(new Date());
@@ -80,7 +81,7 @@ public class UserService {
 
     public void atualizarUsuario(UserUpdateRequestDTO dto) {
         User user = userGateway.buscarPorId(dto.id())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado no sistema"));
+                .orElseThrow(() -> new BadRequestException("Usuário não encontrado no sistema"));
 
         user.setEmail(dto.email());
         user.getEndereco().clear();
@@ -91,7 +92,7 @@ public class UserService {
 
     public void atualizarEnderecoUsuario(UserUpdateEndereco dto) {
        User user = userGateway.buscarPorId(dto.id_usuario())
-               .orElseThrow(() -> new RuntimeException("Usuario não encontrado no sistema"));
+               .orElseThrow(() -> new BadRequestException("Usuario não encontrado no sistema"));
 
         user.getEndereco().clear();
         user.getEndereco().add(dto.endereco());
@@ -101,7 +102,7 @@ public class UserService {
 
     public void deletarUsuario(Long id) {
         User user = userGateway.buscarPorId(id)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado para exclusão"));
+                .orElseThrow(() -> new BadRequestException("ID do usuário não pode ser nulo"));
         user.setAtivo(false);
         user.setDataUltimaAlteracao(new Date());
         userGateway.salvar(user);
