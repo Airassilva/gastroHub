@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>pos.tech</groupId>
-    <artifactId>gatroHub</artifactId>
+    <artifactId>gastroHub</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gatroHub</name>
     <description>gatroHub</description>
